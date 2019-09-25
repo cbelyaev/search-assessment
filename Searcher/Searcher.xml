@@ -1,0 +1,261 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Searcher</name>
+    </assembly>
+    <members>
+        <member name="T:Searcher.Config.Constants">
+            <summary>
+                Provides constants.
+            </summary>
+        </member>
+        <member name="T:Searcher.Config.JwtConfig">
+            <summary>
+                Represents a class with configuration properties of JWT.
+            </summary>
+        </member>
+        <member name="P:Searcher.Config.JwtConfig.Issuer">
+            <summary>
+                Gets or sets an issuer of token.
+            </summary>
+        </member>
+        <member name="P:Searcher.Config.JwtConfig.Key">
+            <summary>
+                Gets or sets a key of token.
+            </summary>
+        </member>
+        <member name="P:Searcher.Config.JwtConfig.KeyBytes">
+            <summary>
+                Gets the bytes of key.
+            </summary>
+        </member>
+        <member name="P:Searcher.Config.JwtConfig.Audience">
+            <summary>
+                Gets an audience of token.
+            </summary>
+        </member>
+        <member name="T:Searcher.Controllers.LoginController">
+            <summary>
+                Represents a controller for user login.
+            </summary>
+        </member>
+        <member name="M:Searcher.Controllers.LoginController.#ctor(UserModule.Service.IUserService,Microsoft.Extensions.Options.IOptions{Searcher.Config.JwtConfig},AutoMapper.IMapper)">
+            <summary>
+                Initializes a new instance of the <see cref="T:Searcher.Controllers.LoginController" /> class.
+            </summary>
+            <param name="userService">The user service.</param>
+            <param name="jwtOptions">The JWT options.</param>
+            <param name="mapper">The mapper service.</param>
+        </member>
+        <member name="M:Searcher.Controllers.LoginController.Login(Searcher.Models.UserLoginDto)">
+            <summary>
+                Authenticates user.
+            </summary>
+            <param name="loginDto">A login and password for the user.</param>
+            <returns>The result of authentication.</returns>
+        </member>
+        <member name="T:Searcher.Controllers.SearchController">
+            <summary>
+                Represents acontroller for searching.
+            </summary>
+        </member>
+        <member name="M:Searcher.Controllers.SearchController.#ctor(SearchModule.Service.ISearchService)">
+            <summary>
+                Initializes a new instance of the <see cref="T:Searcher.Controllers.SearchController" /> class.
+            </summary>
+            <param name="searchService">The search service.</param>
+        </member>
+        <member name="M:Searcher.Controllers.SearchController.Search(Searcher.Models.SearchQueryDto)">
+            <summary>
+                Searches for items.
+            </summary>
+            <param name="searchQueryDto">The query, markets and max results.</param>
+            <returns>The sequence of <see cref="T:SearchModule.Items.FoundItem"/>.</returns>
+        </member>
+        <member name="T:Searcher.Infrastructure.BusinessLogicErrorHandlingMiddleware">
+            <summary>
+                Represents a middleware to catch and reports business logic exceptions in the application's request pipeline.
+            </summary>
+        </member>
+        <member name="M:Searcher.Infrastructure.BusinessLogicErrorHandlingMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate)">
+            <summary>
+                Initializes a new instance of the <see cref="T:Searcher.Infrastructure.BusinessLogicErrorHandlingMiddleware" /> class.
+            </summary>
+            <param name="next">The next middleware.</param>
+        </member>
+        <member name="M:Searcher.Infrastructure.BusinessLogicErrorHandlingMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+                Invokes the next middleware catching business logic exceptions.
+            </summary>
+            <param name="context">The <see cref="T:Microsoft.AspNetCore.Http.HttpContext"/> to use.</param>
+        </member>
+        <member name="T:Searcher.Infrastructure.ConfigurationExtensions">
+            <summary>
+                Provides static methods to work with configuration.
+            </summary>
+        </member>
+        <member name="M:Searcher.Infrastructure.ConfigurationExtensions.ConfigAndGet``1(Microsoft.Extensions.Configuration.IConfigurationSection,Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+                Registers the configuration section and binds it to a new instance of type T.
+            </summary>
+            <typeparam name="T">The type of options being configured.</typeparam>
+            <param name="configSection">The configuration being bound.</param>
+            <param name="serviceCollection">The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" /> to add the services to.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Searcher.Infrastructure.ConfigurationExtensions.ConfigAndGet``1(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+            <summary>
+                Gets the configuration section, registers it and binds it to a new instance of type T.
+            </summary>
+            <typeparam name="T">The type of options being configured.</typeparam>
+            <param name="configuration">The configuration object.</param>
+            <param name="serviceCollection">The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" /> to add the services to.</param>
+            <param name="sectionKey">The key of the configuration section.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Searcher.Infrastructure.ErrorHandlingMiddleware">
+            <summary>
+                Represents a middleware to catch and reports exceptions in the application's request pipeline.
+            </summary>
+        </member>
+        <member name="M:Searcher.Infrastructure.ErrorHandlingMiddleware.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.AspNetCore.Http.RequestDelegate)">
+            <summary>
+                Initializes a new instance of the <see cref="T:Searcher.Infrastructure.ErrorHandlingMiddleware" /> class.
+            </summary>
+            <param name="hostingEnvironment">An instance of <see cref="T:Microsoft.AspNetCore.Hosting.IHostingEnvironment" />.</param>
+            <param name="next">The next middleware.</param>
+        </member>
+        <member name="M:Searcher.Infrastructure.ErrorHandlingMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+                Invokes the next middleware catching exceptions.
+            </summary>
+            <param name="context">The <see cref="T:Microsoft.AspNetCore.Http.HttpContext"/> to use.</param>
+        </member>
+        <member name="T:Searcher.Infrastructure.ErrorHandlingMiddlewareExtensions">
+            <summary>
+                Provides error handling extensions for <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/>.
+            </summary>
+        </member>
+        <member name="M:Searcher.Infrastructure.ErrorHandlingMiddlewareExtensions.UseErrorHandlingMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+                Adds error handling middlewares to the application's request pipeline.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder" /> instance.</param>
+            <returns>The <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder" /> instance.</returns>
+        </member>
+        <member name="T:Searcher.Mapping.UserMappingProfile">
+            <summary>
+                Represents a mapping for user item.
+            </summary>
+        </member>
+        <member name="M:Searcher.Mapping.UserMappingProfile.#ctor">
+            <summary>
+                Initializes a new instance of the <see cref="T:Searcher.Mapping.UserMappingProfile" /> class.
+            </summary>
+        </member>
+        <member name="T:Searcher.Models.LoginResultDto">
+            <summary>
+                Represents a class for the user login result.
+            </summary>
+        </member>
+        <member name="P:Searcher.Models.LoginResultDto.User">
+            <summary>
+                Gets or sets the <see cref="T:Searcher.Models.UserDto"/> instance.
+            </summary>
+        </member>
+        <member name="P:Searcher.Models.LoginResultDto.Token">
+            <summary>
+                Gets or sets the security token.
+            </summary>
+        </member>
+        <member name="P:Searcher.Models.LoginResultDto.ErrorMessage">
+            <summary>
+                Gets or sets the error message.
+            </summary>
+        </member>
+        <member name="T:Searcher.Models.SearchQueryDto">
+            <summary>
+                Represents a search query options.
+            </summary>
+        </member>
+        <member name="P:Searcher.Models.SearchQueryDto.Query">
+            <summary>
+                Get or sets the query.
+            </summary>
+        </member>
+        <member name="P:Searcher.Models.SearchQueryDto.Markets">
+            <summary>
+                Gets or sets the sequence of markets to filter results.
+            </summary>
+        </member>
+        <member name="P:Searcher.Models.SearchQueryDto.MaxResults">
+            <summary>
+                Gets or sets the max number of search results.
+            </summary>
+        </member>
+        <member name="T:Searcher.Models.UserDto">
+            <summary>
+                Represents a class for the user view.
+            </summary>
+        </member>
+        <member name="P:Searcher.Models.UserDto.Id">
+            <summary>
+                Gets or sets the user identificator.
+            </summary>
+        </member>
+        <member name="P:Searcher.Models.UserDto.Login">
+            <summary>
+                Gets or sets the user login.
+            </summary>
+        </member>
+        <member name="T:Searcher.Models.UserLoginDto">
+            <summary>
+                Represents a class for user authentication request.
+            </summary>
+        </member>
+        <member name="P:Searcher.Models.UserLoginDto.Login">
+            <summary>
+                Gets or sets the user login.
+            </summary>
+        </member>
+        <member name="P:Searcher.Models.UserLoginDto.Password">
+            <summary>
+                Gets or sets the user password.
+            </summary>
+        </member>
+        <member name="T:Searcher.SearcherModule">
+            <summary>
+                Represents a class with services and mapping profiles for Web API module.
+            </summary>
+        </member>
+        <member name="T:Searcher.Startup">
+            <summary>
+                Represents a class for starting up the API.
+            </summary>
+        </member>
+        <member name="F:Searcher.Startup.Configuration">
+            <summary>
+                Gets the configuraton for the application.
+            </summary>
+        </member>
+        <member name="M:Searcher.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+                Configures services for the application.
+            </summary>
+            <remarks>
+                This method gets called by the runtime. Use this method to add services to the container.
+            </remarks>
+            <param name="services">The collection of services.</param>
+        </member>
+        <member name="M:Searcher.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+                Configures the HTTP request pipeline.
+            </summary>
+            <remarks>
+                This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </remarks>
+            <param name="app">The builder of an application's request pipeline.</param>
+            <param name="env">The web hosting environment an application is running in.</param>
+        </member>
+    </members>
+</doc>
