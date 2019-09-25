@@ -38,7 +38,7 @@ Use this tool to upload the data to AWS.
 Use this tool to check search client without WebApi.
 ```sh
 > cd search-assessment\SearcherClient
-> 
+> dotnet run "greystone" "Austin,Los Angeles"
 ```
 
 ### Start WebApi
